@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AccessesService } from './accesses/accesses.service';
-import { CreateAccessDto } from './accesses/dto/create-access.dto';
 
 @Controller()
 export class AppController {

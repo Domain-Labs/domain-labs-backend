@@ -31,6 +31,5 @@ export class AccessesController {
   @Get('/get-counts/:timePeriod')
   async getCountsPerPeriod(@Param('timePeriod') timePeriod: BuyGraphTimePeriod): Promise<any> {
     return await this.accessesService.getCountsPerPeriod(timePeriod);
-
   }
 }
