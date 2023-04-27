@@ -21,7 +21,6 @@ export class WhitelistsController {
       whitelistMinute: new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes().toString(),
     };
 
-    console.log("whitelist: ", _createWhitelistDto);
     return await this.whitelistsService.create(_createWhitelistDto);
   }
 
