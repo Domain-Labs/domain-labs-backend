@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { ethers } from 'ethers';
+import { ethers, Wallet } from 'ethers';
 import { Model, Types } from 'mongoose';
 import { createOpenAiInstance } from './createOpenAiInstance';
 import { CreateClioDto } from './dto/create-clio.dto';
@@ -10,13 +10,13 @@ import { RequestClioResponseDto } from './dto/request-clio-response.dto';
 import { RequestClioDto } from './dto/request-clio.dto';
 import { Clio, ClioDocument, } from './schemas/clio.schema';
 import * as paymentContractAbi from '../abis/payment.json';
-
-console.log('===========================', paymentContractAbi)
+import { ClioGateway } from './clios.gateway';
 
 @Injectable()
 export class CliosService {
   constructor(
     @InjectModel(Clio.name) private readonly clioModel: Model<ClioDocument>,
+    private clioGateway: ClioGateway,
     private configService: ConfigService
   ) {
     if (paymentContractAbi) {
@@ -132,5 +132,7 @@ export class CliosService {
     }
 
     user.save();
+
+    this.clioGateway.expiredTimestampUpdateNotify(user._id, clioEndTimestamp + duration);
   }
 }

@@ -19,12 +19,14 @@
     "test:e2e": "jest --config ./e2e/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "9.0.1",
+    "@nestjs/common": "^9.4.0",
     "@nestjs/config": "^2.3.1",
-    "@nestjs/core": "9.0.1",
+    "@nestjs/core": "^9.4.0",
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "9.0.1",
+    "@nestjs/platform-socket.io": "^9.4.0",
     "@nestjs/schedule": "^2.2.1",
+    "@nestjs/websockets": "^9.4.0",
     "class-transformer": "0.5.1",
     "class-validator": "0.13.2",
     "dotenv": "^16.0.3",
@@ -35,6 +37,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.5",
+    "socket.io": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
