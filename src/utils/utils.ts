@@ -1,16 +1,13 @@
-const fs = require('fs');
+import { BigNumber } from 'ethers';
 
-export const remove = async (path: string) => {
-    console.log("path: ", path);
+export const YEAR_IN_SECONDS = 31536000;
 
-    return new Promise((resolve, reject) => {
-        fs.rm(path, { recursive: true }, (error) => {
-            if (error) {
-                console.log("remove error: ", error);
-                reject(false);
-            }
+export const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-            resolve(true);
-        });
-    });
+export function calculateDuration(years: number) {
+  return BigNumber.from(parseInt((years * YEAR_IN_SECONDS).toFixed()));
+}
+
+export function getBufferedPrice(price: BigNumber) {
+  return price.mul(110).div(100);
 }
